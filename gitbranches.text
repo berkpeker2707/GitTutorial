@@ -1,0 +1,80 @@
+### To create a new branch
+git branch (branch-name-without-parenthesis)
+
+### To create a new branch in on a different revision
+git branch other-branch (revision-hash-code-something-like-2b5bec)
+
+### Checking current git status
+git status
+
+### Switching Branches
+git checkout new-branch-name
+
+### Or try the new switching
+git switch other-branch
+
+### Rename branch
+git branch -m the-name-i-want-as-new
+
+### Listing all branches
+git branch
+
+### Rename non head (not current one it means) branch
+git branch -m my-current-branch my-better-branch-named
+
+### Git doesn't allow renaming remote branches,
+### what we did is renaming local branches, so you have to delete old one
+### then pushing up new one from your local repository
+
+### -u is for tracking branches, it connects branches remote and local
+git push -u origin push-this-branch
+
+### we can do reverse, we can download remote repository to local
+### we track remote one from origin feature below
+git branch --track track-this-login origin/feature/login
+
+### or we can use checkout and download it,
+### git uses remote branches name as local name
+git checkout --track origin/feature/login
+
+### tracking is important, if you use it as stated above,
+### you can only use git pull & git push afterwards without anything else
+
+### if it says diverge, it means you haven't pushed or pulled from either
+### local brach or someone put something new to remote branch that you need to pull
+git -v
+### ahead means 1 is needed to be pushed from local,
+### behind means 2 new remote changes
+
+### deleting branches
+### note, you can't delete head branch, you need to switch
+git branch -d delete-this-branch
+
+### git warns if that branchs commits is saved in nowhere,
+### you can is -f to force to process
+
+### deleting remoting branches
+git push origin --delete this-branch-needs-to-go
+
+### merging branches
+### bringing new changes into main branch
+### first
+git switch main
+### then
+git merge
+
+### integrating another way is rebasing
+### this is not better or worse way
+### integrate changes of main to feature
+git switch feature
+git rebase main
+### it looks like straight line, different than merging
+
+### comparing branches
+### this shows which commit are in feature branch but not in main branch
+git log main..feature
+
+### comparing local and remote
+git log origin/main..main
+
+### SOURCE: https://www.freecodecamp.org/news/how-git-branches-work/
